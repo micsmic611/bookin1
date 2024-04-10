@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Booking_AppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="Booking_ID" />
+          </Key>
+          <Property Name="Booking_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="6" />
+          <Property Name="Room_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Booking_DateTime_Start" Type="datetime" />
+          <Property Name="Booking_DateTime_End" Type="datetime" />
+          <Property Name="Booking_Purpose" Type="varchar" MaxLength="100" />
+          <Property Name="Equipment_ID" Type="varchar" MaxLength="50" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Booking_Equipment">
+          <Key>
+            <PropertyRef Name="Booking_Equipment_ID" />
+          </Key>
+          <Property Name="Booking_Equipment_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="6" />
+          <Property Name="Equipment_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Booking_Equipment_DateTime_Start" Type="datetime" />
+          <Property Name="Booking_Equipment_DateTime_End" Type="datetime" />
+          <Property Name="Booking_Equipment_Purpose" Type="varchar" MaxLength="100" />
+          <Property Name="Equipment_Num" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Company_ID" />
+          </Key>
+          <Property Name="Company_ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Company_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Company_Address" Type="varchar" MaxLength="200" />
+          <Property Name="Company_Tel" Type="varchar" MaxLength="10" />
+          <Property Name="Company_Email" Type="varchar" MaxLength="20" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Equipment_ID" />
+          </Key>
+          <Property Name="Equipment_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Equipment_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Equipment_Brand" Type="varchar" MaxLength="50" />
+          <Property Name="Equipment_Series" Type="varchar" MaxLength="50" />
+          <Property Name="Equipment_Status" Type="varchar" MaxLength="10" />
+          <Property Name="Equipment_Num" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment_Status">
+          <Key>
+            <PropertyRef Name="Status_Equipment_ID" />
+          </Key>
+          <Property Name="Status_Equipment_ID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Equipment_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Booking_Equipment_Datetime" Type="datetime" />
+          <Property Name="Satatus_Equipment_Name" Type="varchar" MaxLength="10" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Meeting_Room">
+          <Key>
+            <PropertyRef Name="Room_ID" />
+          </Key>
+          <Property Name="Room_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Room_Name" Type="varchar" MaxLength="10" />
+          <Property Name="Room_Capacity" Type="int" />
+          <Property Name="Room_Detail" Type="varchar" MaxLength="100" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Payment_ID" />
+          </Key>
+          <Property Name="Payment_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Booking_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Payment_Chanace" Type="nchar" MaxLength="10" />
+          <Property Name="Payment_Price" Type="money" />
+          <Property Name="Payment_Status" Type="varchar" MaxLength="10" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room_Status">
+          <Key>
+            <PropertyRef Name="Satatus_ID" />
+          </Key>
+          <Property Name="Satatus_ID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Room_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Booking_DataTime" Type="datetime" />
+          <Property Name="Satatus_Name" Type="varchar" MaxLength="10" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room_Type">
+          <Key>
+            <PropertyRef Name="RoomType_ID" />
+          </Key>
+          <Property Name="RoomType_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RoomType_Name" Type="varchar" MaxLength="20" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room_Usage_Log">
+          <Key>
+            <PropertyRef Name="Log_ID" />
+          </Key>
+          <Property Name="Log_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Room_ID" Type="varchar" MaxLength="10" />
+          <Property Name="User_ID" Type="varchar" MaxLength="6" />
+          <Property Name="Booking_DateTime_Start" Type="datetime" />
+          <Property Name="Booking_DateTime_End" Type="datetime" />
+          <Property Name="Booking_Purpose" Type="varchar" MaxLength="100" />
+          <Property Name="Equipment_ID" Type="varchar" MaxLength="10" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="signup">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" />
+          <Property Name="User_Lastname" Type="varchar" MaxLength="50" />
+          <Property Name="User_Tel" Type="varchar" MaxLength="10" />
+          <Property Name="User_Brithday" Type="date" />
+          <Property Name="User_Email" Type="varchar" MaxLength="10" />
+          <Property Name="User_Username" Type="varchar" MaxLength="20" />
+          <Property Name="User_Password" Type="varchar" MaxLength="20" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Booking_AppModelStoreContainer">
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Booking_Equipment" EntityType="Self.Booking_Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment_Status" EntityType="Self.Equipment_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meeting_Room" EntityType="Self.Meeting_Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room_Status" EntityType="Self.Room_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room_Type" EntityType="Self.Room_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room_Usage_Log" EntityType="Self.Room_Usage_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="signup" EntityType="Self.signup" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Booking_AppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="Booking_ID" />
+          </Key>
+          <Property Name="Booking_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_ID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Room_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Booking_DateTime_Start" Type="DateTime" Precision="3" />
+          <Property Name="Booking_DateTime_End" Type="DateTime" Precision="3" />
+          <Property Name="Booking_Purpose" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Booking_Equipment">
+          <Key>
+            <PropertyRef Name="Booking_Equipment_ID" />
+          </Key>
+          <Property Name="Booking_Equipment_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_ID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Booking_Equipment_DateTime_Start" Type="DateTime" Precision="3" />
+          <Property Name="Booking_Equipment_DateTime_End" Type="DateTime" Precision="3" />
+          <Property Name="Booking_Equipment_Purpose" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment_Num" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Company_ID" />
+          </Key>
+          <Property Name="Company_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Company_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Tel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Equipment_ID" />
+          </Key>
+          <Property Name="Equipment_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Equipment_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment_Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment_Series" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment_Num" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Equipment_Status">
+          <Key>
+            <PropertyRef Name="Status_Equipment_ID" />
+          </Key>
+          <Property Name="Status_Equipment_ID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Equipment_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Booking_Equipment_Datetime" Type="DateTime" Precision="3" />
+          <Property Name="Satatus_Equipment_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Meeting_Room">
+          <Key>
+            <PropertyRef Name="Room_ID" />
+          </Key>
+          <Property Name="Room_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Room_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Room_Capacity" Type="Int32" />
+          <Property Name="Room_Detail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Payment_ID" />
+          </Key>
+          <Property Name="Payment_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Booking_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Payment_Chanace" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Payment_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Payment_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Room_Status">
+          <Key>
+            <PropertyRef Name="Satatus_ID" />
+          </Key>
+          <Property Name="Satatus_ID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Room_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Booking_DataTime" Type="DateTime" Precision="3" />
+          <Property Name="Satatus_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Room_Type">
+          <Key>
+            <PropertyRef Name="RoomType_ID" />
+          </Key>
+          <Property Name="RoomType_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoomType_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Room_Usage_Log">
+          <Key>
+            <PropertyRef Name="Log_ID" />
+          </Key>
+          <Property Name="Log_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Room_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="User_ID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Booking_DateTime_Start" Type="DateTime" Precision="3" />
+          <Property Name="Booking_DateTime_End" Type="DateTime" Precision="3" />
+          <Property Name="Booking_Purpose" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="Booking_AppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Booking" EntityType="Self.Booking" />
+          <EntitySet Name="Booking_Equipment" EntityType="Self.Booking_Equipment" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="Equipment_Status" EntityType="Self.Equipment_Status" />
+          <EntitySet Name="Meeting_Room" EntityType="Self.Meeting_Room" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" />
+          <EntitySet Name="Room_Status" EntityType="Self.Room_Status" />
+          <EntitySet Name="Room_Type" EntityType="Self.Room_Type" />
+          <EntitySet Name="Room_Usage_Log" EntityType="Self.Room_Usage_Log" />
+          <EntitySet Name="signup" EntityType="Booking_AppModel.signup" />
+        </EntityContainer>
+        <EntityType Name="signup">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Tel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="User_Brithday" Type="DateTime" Precision="0" />
+          <Property Name="User_Email" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="User_Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="User_Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Booking_AppModelStoreContainer" CdmEntityContainer="Booking_AppEntities">
+          <EntitySetMapping Name="Booking">
+            <EntityTypeMapping TypeName="Booking_AppModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="Booking_ID" ColumnName="Booking_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Room_ID" ColumnName="Room_ID" />
+                <ScalarProperty Name="Booking_DateTime_Start" ColumnName="Booking_DateTime_Start" />
+                <ScalarProperty Name="Booking_DateTime_End" ColumnName="Booking_DateTime_End" />
+                <ScalarProperty Name="Booking_Purpose" ColumnName="Booking_Purpose" />
+                <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Booking_Equipment">
+            <EntityTypeMapping TypeName="Booking_AppModel.Booking_Equipment">
+              <MappingFragment StoreEntitySet="Booking_Equipment">
+                <ScalarProperty Name="Booking_Equipment_ID" ColumnName="Booking_Equipment_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+                <ScalarProperty Name="Booking_Equipment_DateTime_Start" ColumnName="Booking_Equipment_DateTime_Start" />
+                <ScalarProperty Name="Booking_Equipment_DateTime_End" ColumnName="Booking_Equipment_DateTime_End" />
+                <ScalarProperty Name="Booking_Equipment_Purpose" ColumnName="Booking_Equipment_Purpose" />
+                <ScalarProperty Name="Equipment_Num" ColumnName="Equipment_Num" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="Booking_AppModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Company_ID" ColumnName="Company_ID" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+                <ScalarProperty Name="Company_Address" ColumnName="Company_Address" />
+                <ScalarProperty Name="Company_Tel" ColumnName="Company_Tel" />
+                <ScalarProperty Name="Company_Email" ColumnName="Company_Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="Booking_AppModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+                <ScalarProperty Name="Equipment_Name" ColumnName="Equipment_Name" />
+                <ScalarProperty Name="Equipment_Brand" ColumnName="Equipment_Brand" />
+                <ScalarProperty Name="Equipment_Series" ColumnName="Equipment_Series" />
+                <ScalarProperty Name="Equipment_Status" ColumnName="Equipment_Status" />
+                <ScalarProperty Name="Equipment_Num" ColumnName="Equipment_Num" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment_Status">
+            <EntityTypeMapping TypeName="Booking_AppModel.Equipment_Status">
+              <MappingFragment StoreEntitySet="Equipment_Status">
+                <ScalarProperty Name="Status_Equipment_ID" ColumnName="Status_Equipment_ID" />
+                <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+                <ScalarProperty Name="Booking_Equipment_Datetime" ColumnName="Booking_Equipment_Datetime" />
+                <ScalarProperty Name="Satatus_Equipment_Name" ColumnName="Satatus_Equipment_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meeting_Room">
+            <EntityTypeMapping TypeName="Booking_AppModel.Meeting_Room">
+              <MappingFragment StoreEntitySet="Meeting_Room">
+                <ScalarProperty Name="Room_ID" ColumnName="Room_ID" />
+                <ScalarProperty Name="Room_Name" ColumnName="Room_Name" />
+                <ScalarProperty Name="Room_Capacity" ColumnName="Room_Capacity" />
+                <ScalarProperty Name="Room_Detail" ColumnName="Room_Detail" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment">
+            <EntityTypeMapping TypeName="Booking_AppModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Payment_ID" ColumnName="Payment_ID" />
+                <ScalarProperty Name="Booking_ID" ColumnName="Booking_ID" />
+                <ScalarProperty Name="Payment_Chanace" ColumnName="Payment_Chanace" />
+                <ScalarProperty Name="Payment_Price" ColumnName="Payment_Price" />
+                <ScalarProperty Name="Payment_Status" ColumnName="Payment_Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room_Status">
+            <EntityTypeMapping TypeName="Booking_AppModel.Room_Status">
+              <MappingFragment StoreEntitySet="Room_Status">
+                <ScalarProperty Name="Satatus_ID" ColumnName="Satatus_ID" />
+                <ScalarProperty Name="Room_ID" ColumnName="Room_ID" />
+                <ScalarProperty Name="Booking_DataTime" ColumnName="Booking_DataTime" />
+                <ScalarProperty Name="Satatus_Name" ColumnName="Satatus_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room_Type">
+            <EntityTypeMapping TypeName="Booking_AppModel.Room_Type">
+              <MappingFragment StoreEntitySet="Room_Type">
+                <ScalarProperty Name="RoomType_ID" ColumnName="RoomType_ID" />
+                <ScalarProperty Name="RoomType_Name" ColumnName="RoomType_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room_Usage_Log">
+            <EntityTypeMapping TypeName="Booking_AppModel.Room_Usage_Log">
+              <MappingFragment StoreEntitySet="Room_Usage_Log">
+                <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
+                <ScalarProperty Name="Room_ID" ColumnName="Room_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Booking_DateTime_Start" ColumnName="Booking_DateTime_Start" />
+                <ScalarProperty Name="Booking_DateTime_End" ColumnName="Booking_DateTime_End" />
+                <ScalarProperty Name="Booking_Purpose" ColumnName="Booking_Purpose" />
+                <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="signup">
+            <EntityTypeMapping TypeName="Booking_AppModel.signup">
+              <MappingFragment StoreEntitySet="signup">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+                <ScalarProperty Name="User_Username" ColumnName="User_Username" />
+                <ScalarProperty Name="User_Email" ColumnName="User_Email" />
+                <ScalarProperty Name="User_Brithday" ColumnName="User_Brithday" />
+                <ScalarProperty Name="User_Tel" ColumnName="User_Tel" />
+                <ScalarProperty Name="User_Lastname" ColumnName="User_Lastname" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
